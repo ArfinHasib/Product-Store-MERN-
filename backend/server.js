@@ -11,6 +11,16 @@ const PORT = 5000;
 // Middleware
 app.use(express.json()); // To parse JSON bodies
 
+app.get('/api/products', async (req, res) => {
+	try {
+		const products = await Product.find();
+		res.status(200).json({ success: true, data: products });
+	} catch (error) {
+		console.log('Error in fetching products', error.message);
+		res.status(500).json({ success: false, message: 'Server error while fetching products.' });
+	}
+});
+
 app.post('/api/products', async (req, res) => {
 	const product = req.body; // User will send product data in the request body
 
@@ -34,6 +44,7 @@ app.delete('/api/products/:id', async (req, res) => {
 		await Product.findByIdAndDelete(id);
 		res.status(200).json({ success: true, message: 'Product deleted successfully.' });
 	} catch (error) {
+		console.log('Error in deleting products', error.message);
 		res.status(404).json({ success: false, message: 'Product not found.' });
 	}
 });
