@@ -1,8 +1,12 @@
-import { Button, Container, Flex, HStack, Text } from '@chakra-ui/react';
+import { Button, Container, Flex, HStack, Text, useColorMode } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import { FiPlusSquare } from 'react-icons/fi';
+import { IoMoon } from 'react-icons/io5';
+import { LuSun } from 'react-icons/lu';
 
 const Navbar = () => {
+	const { colorMode, toggleColorMode } = useColorMode();
+
 	return (
 		<Container maxWidth={'1140px'} px={'4'}>
 			<Flex
@@ -25,13 +29,13 @@ const Navbar = () => {
 					<Link to="/">Product Store 🛒</Link>
 				</Text>
 
-				<HStack spacing={2} alignItems={'center'}>
+				<HStack spacing={'20'} alignItems={'center'}>
 					<Link to="/create">
 						<Button>
 							<FiPlusSquare fontSize={20} />
 						</Button>
-						<Button>
-							<FiPlusSquare fontSize={20} />
+						<Button onClick={toggleColorMode} marginLeft={2}>
+							{colorMode === 'light' ? <IoMoon /> : <LuSun fontSize={20} />}
 						</Button>
 					</Link>
 				</HStack>
