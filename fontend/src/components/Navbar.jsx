@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom';
 import { FiPlusSquare } from 'react-icons/fi';
 import { IoMoon } from 'react-icons/io5';
 import { LuSun } from 'react-icons/lu';
+import { useProductStore } from '../store/product';
 
 const Navbar = () => {
 	const { colorMode, toggleColorMode } = useColorMode();
+	// const [products, setProducts] = useProductStore();
 
 	return (
 		<Container maxWidth={'1140px'} px={'4'}>
